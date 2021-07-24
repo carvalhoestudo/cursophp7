@@ -21,14 +21,20 @@ $usuario->Logged("carvalho","@1234");
 echo ($usuario);*/
 
 /*Inserindo e retornando dados novo usuario.
-$cliente = new Usuario("Andrei", "!Andre1");
+$cliente = new Usuario("Teste", "!@#$%1");
 $cliente->insert();
 echo $cliente;*/
 
-//Atualizar dados de um usuario.
+/*Atualizar dados de um usuario.
 $usuario = new Usuario();
 $usuario->LoadById(6);
 $usuario->update("Andréia", "!@#2912");
+echo $usuario;*/
+
+//Deletar Usuário
+$usuario = new Usuario();
+$usuario->loadById(9);
+$usuario->delete();
 echo $usuario;
 
 

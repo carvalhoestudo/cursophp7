@@ -123,6 +123,22 @@ class Usuario {
         }
     }
 
+    //Criando método DELETE
+    public function delete(){
+        //Conectando ao BD.
+        $sql = new Sql();
+
+        $sql->query("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
+            ":ID"=>$this->getIdusuario()
+        ));
+
+        //Limpar os dado
+        $this->setIdusuario(0);
+        $this->setDeslogin("");
+        $this->setDessenha("");
+        $this->setDtcadastro(new DateTime());
+    }
+
     //Método construtor para inserir usuarios
     public function __construct($login = "", $password = ""){
 
