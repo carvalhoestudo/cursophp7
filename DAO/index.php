@@ -15,9 +15,15 @@ echo json_encode($lista);*/
 $search = Usuarios::search("v");
 echo json_encode($search);*/
 
-//Exibindo usuário logado
+/*Exibindo usuário logado
 $usuario = new Usuarios();
 $usuario->Logged("carvalho","@1234");
-echo ($usuario);
+echo ($usuario);*/
+
+//Inserindo e retornando dados novo usuario.
+$cliente = new Usuarios("Andrei", "!Andre1");
+$cliente->insert();
+echo $cliente;
+
 
 ?>

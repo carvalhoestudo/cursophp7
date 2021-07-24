@@ -39,6 +39,15 @@ class Usuarios {
         $this->dtcadastro = $value;
     }
 
+    //Criando método RESULTS para retorno de resultados
+    public function setData($data){
+
+        $this->setIdusuario($data['idusuario']);
+        $this->setDeslogin($data['deslogin']);
+        $this->setDessenha($data['dessenha']);
+        $this->setDtcadastro(new DateTime($data['dtcadastro']));
+    } 
+
     //Criando método para carregar pelo ID do Usuário.
     public function loadByid($id){
         //Conecatando o banco de dados.
@@ -51,13 +60,8 @@ class Usuarios {
 
         //Preenchendo os atributos com os dados da tabela do BD.
         if(count($results) > 0 ){
-            
-            $row = $results[0];
-
-            $this->setIdusuario($row['idusuario']);
-            $this->setDeslogin($row['deslogin']);
-            $this->setDessenha($row['dessenha']);
-            $this->setDtcadastro(new DateTime($row['dtcadastro']));
+            //Aplicando método RESULTS encurtado.
+            $this->setData($results[0]);
         }
 
     }
@@ -93,18 +97,37 @@ class Usuarios {
         ));
 
         if(count($results) > 0){
-
-            $row = $results[0];
-
-            $this->setIdusuario($row['idusuario']);
-            $this->setDeslogin($row['deslogin']);
-            $this->setDessenha($row['dessenha']);
-            $this->setDtcadastro(new DateTime($row['dtcadastro']));
+            //Aplicando método RESULTS encurtado.
+            $this->setData($results[0]);
 
         } else {
 
             throw new Exception("Login e/ou senha inválidos!");
         }
+    }
+
+    //Criando método INSERT.
+    public function insert(){
+        //Conectando ao BD.
+        $sql = new Sql();
+
+        //Criando uma procedure no BD com retorno de ID.
+        $results = $sql->select("CALL sp_usuarios_insert(:LOGIN, :PASSWORD)", array(
+            ":LOGIN"=>$this->getDeslogin(),
+            ":PASSWORD"=>$this->getDessenha()
+        ));
+
+        if (count($results) > 0){
+            //Aplicando método RESULTS encurtado.
+            $this->setData($results[0]);
+        }
+    }
+
+    //Método construtor para inserir usuarios
+    public function __construct($login = "", $password = ""){
+
+        $this->setDeslogin($login);
+        $this->setDessenha($password);        
     }
 
     //Exibindo os dados de um determinado usuario da tabela do BD.
