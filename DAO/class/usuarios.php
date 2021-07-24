@@ -62,7 +62,52 @@ class Usuarios {
 
     }
 
-    //Exibindo os dados da tabela do BD.
+    //Exibindo uma lista Ordenada de usuarios da tabela do BD.
+    public static function getList(){
+        //Conecatando o banco de dados.
+        $sql = new Sql();
+
+        return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin;");
+
+    }
+
+    //Buscando usuarios por login na tabela usuarios do BD.
+    public static function search($login){
+        //Conectando o banco de dados.
+        $sql = new Sql();
+
+        return $sql->select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :SEARCH ORDER BY deslogin", array(
+            ":SEARCH"=>"%".$login."%"
+        ));
+
+    }
+
+    //Exibindo dados do usuarios logados.
+    public function Logged($logged, $password){
+        //Conectando ao BD.
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT * FROM tb_usuarios WHERE deslogin = :LOGGED AND dessenha = :PASSWORD", array(
+            ":LOGGED"=>$logged,
+            ":PASSWORD"=>$password
+        ));
+
+        if(count($results) > 0){
+
+            $row = $results[0];
+
+            $this->setIdusuario($row['idusuario']);
+            $this->setDeslogin($row['deslogin']);
+            $this->setDessenha($row['dessenha']);
+            $this->setDtcadastro(new DateTime($row['dtcadastro']));
+
+        } else {
+
+            throw new Exception("Login e/ou senha inválidos!");
+        }
+    }
+
+    //Exibindo os dados de um determinado usuario da tabela do BD.
     public function __toString(){
 
         return json_encode(array(
