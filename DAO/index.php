@@ -3,27 +3,33 @@
 require_once("config.php");
 
 /*Listando um determinado usuario da classe usuarios.
-$user = new Usuarios();
+$user = new Usuario();
 $user->loadById(1);
 echo $user;*/
 
 /*Lista ordenada de usuários da classe usuarios.
-$lista = Usuarios::getList();
+$lista = Usuario::getList();
 echo json_encode($lista);*/
 
 /*Lista de usuarios por login
-$search = Usuarios::search("v");
+$search = Usuario::search("v");
 echo json_encode($search);*/
 
 /*Exibindo usuário logado
-$usuario = new Usuarios();
+$usuario = new Usuario();
 $usuario->Logged("carvalho","@1234");
 echo ($usuario);*/
 
-//Inserindo e retornando dados novo usuario.
-$cliente = new Usuarios("Andrei", "!Andre1");
+/*Inserindo e retornando dados novo usuario.
+$cliente = new Usuario("Andrei", "!Andre1");
 $cliente->insert();
-echo $cliente;
+echo $cliente;*/
+
+//Atualizar dados de um usuario.
+$usuario = new Usuario();
+$usuario->LoadById(6);
+$usuario->update("Andréia", "!@#2912");
+echo $usuario;
 
 
 ?>

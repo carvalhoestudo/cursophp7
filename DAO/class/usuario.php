@@ -1,6 +1,6 @@
 <?php
 
-class Usuarios {
+class Usuario {
     //Dados da tabela do BD.
     private $idusuario;
     private $deslogin;
@@ -128,6 +128,22 @@ class Usuarios {
 
         $this->setDeslogin($login);
         $this->setDessenha($password);        
+    }
+
+    //Método para atualizar dados de usuarios
+    public function update($login, $password){
+        //Determinando variaveis que podem ser alteradas.
+        $this->setDeslogin($login);
+        $this->setDessenha($password);
+
+        //Conectando ao BD.
+        $sql = new Sql();
+
+        $sql->query("UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASSWORD WHERE idusuario = :ID", array(
+            ":LOGIN"=>$this->getDeslogin(),
+            ":PASSWORD"=>$this->getDessenha(),
+            ":ID"=>$this->getIdusuario()
+        ));
     }
 
     //Exibindo os dados de um determinado usuario da tabela do BD.
