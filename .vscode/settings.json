@@ -6,8 +6,10 @@
         "Cria",
         "Definindo",
         "Detectando",
+        "Excluindo",
         "Fechando",
         "Incluindo",
+        "Removendo",
         "Separa",
         "adicionando",
         "alho",
@@ -20,6 +22,8 @@
         "conteúdo",
         "deslogin",
         "do",
+        "exclu",
+        "excluído",
         "inv",
         "inválidos",
         "lidos",
@@ -33,6 +37,7 @@
         "separador",
         "tabula",
         "tabulação",
+        "teste",
         "tipo"
     ]
 }
