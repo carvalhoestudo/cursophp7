@@ -8,6 +8,8 @@
         "Detectando",
         "Excluindo",
         "Fechando",
+        "Fun",
+        "Função",
         "Incluindo",
         "Removendo",
         "Separa",
@@ -20,10 +22,12 @@
         "colunas",
         "conte",
         "conteúdo",
+        "criada",
         "deslogin",
         "do",
         "exclu",
         "excluído",
+        "imagem",
         "inv",
         "inválidos",
         "lidos",
@@ -38,6 +42,7 @@
         "tabula",
         "tabulação",
         "teste",
-        "tipo"
+        "tipo",
+        "transforma"
     ]
 }
